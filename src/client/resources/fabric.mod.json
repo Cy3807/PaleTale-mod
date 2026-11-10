@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "paletale",
   "version": "${version}",
-  "name": "PaleTale",
-  "description": "PaleTale 配套模组：在游戏中查询物品、玩家、组织、广场与 SMC 世界的商店和价格，绑定箱子商店，导航并接收收藏更新通知。",
+  "name": "Paletale 苍白档案模组",
+  "description": "Paletale 苍白档案模组，基于 SMC 服务器：在游戏中查询物品、玩家、组织、广场与 SMC 世界的商店和价格，绑定箱子商店，导航并接收收藏更新通知。",
   "icon": "assets/paletale/icon.png",
   "authors": [
     "Cy3807"

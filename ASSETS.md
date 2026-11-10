@@ -4,7 +4,7 @@
 
 ## 美术与品牌
 
-- 名称「苍白档案 / PaleTale」、字标 `wordmark.png`、`paper-frame.png`、`archive-frame.png`、`icon.png` 及 `textures/gui/*.png` 分类图标：由作者 Cy3807 原创，**保留所有权利**。允许在不改变含义的前提下随源码构建、研究和学习；**不允许**在 fork 的发行版中沿用名称与品牌素材冒充官方版本，请替换为自己的素材。
+- 名称「苍白档案 / Paletale」、字标 `wordmark.png`、`paper-frame.png`、`archive-frame.png`、`icon.png` 及 `textures/gui/*.png` 分类图标：由作者 Cy3807 原创，**保留所有权利**。允许在不改变含义的前提下随源码构建、研究和学习；**不允许**在 fork 的发行版中沿用名称与品牌素材冒充官方版本，请替换为自己的素材。
 
 ## 数据
 

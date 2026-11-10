@@ -1,9 +1,9 @@
-# PaleTale 配套模组 / PaleTale Companion Mod
+# Paletale 苍白档案模组 / Paletale Companion Mod
 
 > 非官方 Minecraft 客户端模组，与 Mojang / Microsoft 无关。
 > *NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.*
 
-[苍白档案](https://www.paletale.cn)（Minecraft 服务器「苍白王国」SIMMC 的在线编年史网站）的游戏内配套客户端模组：在游戏里查询网站公开的物品、玩家、广告、商店与价格，绑定箱子商店，主城导航，收藏玩家上下线提醒等。
+Paletale 苍白档案模组，基于 SMC 服务器。它是 [苍白档案](https://www.paletale.cn) 的游戏内客户端模组：在游戏里查询网站公开的物品、玩家、广告、商店与价格，绑定箱子商店，主城导航，收藏玩家上下线提醒等。
 
 - 平台：Fabric，**仅客户端**（服务器无需安装）
 - 版本：Minecraft 1.21.11（主线）；1.21.8 兼容构建见 `build-1.21.8.sh`
@@ -17,12 +17,12 @@
 
 ## 隐私与安全（请先读）
 
-模组会连接 PaleTale 网站，并**在你登录后**上传部分游戏内信息。具体上传什么、如何关闭，见 [PRIVACY.md](PRIVACY.md)。
+模组会连接苍白档案网站，并**在你登录后**上传部分游戏内信息。具体上传什么、如何关闭，见 [PRIVACY.md](PRIVACY.md)。
 安全模型与漏洞报告方式见 [SECURITY.md](SECURITY.md)。
 
 要点：
 - 登录使用 Mojang 官方会话验证；**Minecraft 访问令牌只交给本机 Authlib，不会发给 PaleTale**。
-- 只在 `play.simmc.cn` 等 SIMMC 入口启用登录；单人世界与其他服务器不会触发。
+- 只在 SMC 服务器入口（如 `play.simmc.cn`）启用登录；单人世界与其他服务器不会触发。
 - 被动读取：已加载的告示牌、玩家列表、转服包、Boss 栏/Tab 文本等客户端已有数据。
 - **主动操作（仅在你使用对应功能时）**：导航传送、远征世界切换会替你发送服务器命令（如 `/m`），并在**隐藏的服务器菜单**里点击对应条目；领地/频道图标功能会打开并读取服务器菜单后关闭。命令有节流队列。**不会**自动攻击、挖掘、放置，也不会在你没触发时操作背包。若你所在服务器禁止此类自动化，请在设置中关闭相关功能或不要使用导航。
 
@@ -48,4 +48,4 @@
 
 ## English summary
 
-PaleTale Companion is a **client-side-only Fabric mod** for the SIMMC Minecraft server. It shows data published on the PaleTale website (items, players, market ads, shops/prices) in-game, binds chest-shop signs, offers city navigation, and notifies you when favorited players go online. It talks to `https://www.paletale.cn` only. Login uses Mojang's session service; your Minecraft access token never leaves your machine. See `PRIVACY.md` for exactly what is uploaded, `SECURITY.md` for the threat model, and `ASSETS.md` for artwork/data licensing (the MIT license covers source code only). The backend is not part of this repository.
+Paletale Companion (Paletale 苍白档案模组) is a **client-side-only Fabric mod** built around the SMC Minecraft server. It shows data published on the Paletale website (items, players, market ads, shops/prices) in-game, binds chest-shop signs, offers city navigation, and notifies you when favorited players go online. It talks to `https://www.paletale.cn` only. Login uses Mojang's session service; your Minecraft access token never leaves your machine. See `PRIVACY.md` for exactly what is uploaded, `SECURITY.md` for the threat model, and `ASSETS.md` for artwork/data licensing (the MIT license covers source code only). The backend is not part of this repository.
