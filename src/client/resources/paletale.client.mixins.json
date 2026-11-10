@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "package": "cn.paletale.companion.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "NavigationEntityMixin",
+    "ChatDisplayMixin",
+    "FontAccessMixin",
+    "ScreenFontMixin",
+    "WindowTooltipMixin",
+    "ChatInputMixin",
+    "ServerTransferMixin",
+    "TabPopulationMixin",
+    "PlayerRosterMixin",
+    "PlayerQueryMixin",
+    "PlayerQueryCloseMixin",
+    "SignUpdateMixin",
+    "RadialMouseMixin",
+    "RadialUseMixin",
+    "ServerSidebarMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

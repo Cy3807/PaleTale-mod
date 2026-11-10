@@ -1,0 +1,122 @@
+// Builds the Minecraft 1.21.8 variant from the 1.21.11 sources (applied by build.gradle when -Pmc_compat=1.21.8).
+// Only src/client/java differs between the two; every rule below maps a 1.21.11 API to its 1.21.8 spelling, line by line.
+// Anything not covered fails the compile, which is the signal to add a rule here.
+def rules = [
+    [/modalName\.keyPressed\(event\)/, 'modalName.keyPressed(pkey,pscan,pmods)'],
+    [/new ChatScreen\(text,false\)/, 'new ChatScreen(text)'],
+    [/new ChatScreen\(("[^"]*"),\s*false\)/, 'new ChatScreen($1)'],
+    [/screen\.resize\(client\.getWindow\(\)\.getGuiScaledWidth\(\), client\.getWindow\(\)\.getGuiScaledHeight\(\)\)/, 'screen.resize(client, client.getWindow().getGuiScaledWidth(), client.getWindow().getGuiScaledHeight())'],
+    [/screen\.mouseClicked\(new net\.minecraft\.client\.input\.MouseButtonEvent\(x,y,new net\.minecraft\.client\.input\.MouseButtonInfo\(button,0\)\),false\)/, 'screen.mouseClicked(x,y,button)'],
+    [/var finder=new net\.minecraft\.client\.gui\.ActiveTextCollector\.ClickableStyleFinder.*;/, 'return client.gui.getChat().getClickedComponentStyleAt(x,y);'],
+    [/client\.gui\.getChat\(\)\.captureClickableText\(finder,.*;/, ''],
+    [/return finder\.result\(\);/, ''],
+    [/private void paletaleClick\(net\.minecraft\.client\.input\.MouseButtonEvent event,boolean twice,CallbackInfoReturnable<Boolean> ci\)/, 'private void paletaleClick(double px,double py,int pb,CallbackInfoReturnable<Boolean> ci)'],
+    [/ChatAssist\.click\(\(ChatScreen\)\(Object\)this,event\.x\(\),event\.y\(\),event\.button\(\)\)/, 'ChatAssist.click((ChatScreen)(Object)this,px,py,pb)'],
+    [/private void paletaleKey\(net\.minecraft\.client\.input\.KeyEvent event,CallbackInfoReturnable<Boolean> ci\)/, 'private void paletaleKey(int pk,int ps,int pm,CallbackInfoReturnable<Boolean> ci)'],
+    [/ChatAssist\.escape\(event\.key\(\)\)/, 'ChatAssist.escape(pk)'],
+    [/camera\.position\(\)/, 'camera.getPosition()'],
+    [/camera\.yRot\(\)/, 'camera.getYRot()'],
+    [/camera\.xRot\(\)/, 'camera.getXRot()'],
+    [/getWindow\(\)\.handle\(\)/, 'getWindow().getWindow()'],
+    [/new net\.minecraft\.network\.chat\.FontDescription\.Resource\((Identifier\.fromNamespaceAndPath\([^)]*\))\)/, '$1'],
+    [/net\.minecraft\.resources\.Identifier/, 'net.minecraft.resources.ResourceLocation'],
+    [/\bIdentifier\b/, 'ResourceLocation'],
+    [/net\.minecraft\.util\.Util\.getPlatform/, 'net.minecraft.Util.getPlatform'],
+    [/protected void renderContents\(/, 'protected void renderWidget('],
+    [/super\.renderContents\(/, 'super.renderWidget('],
+    [/import net\.minecraft\.client\.input\.KeyEvent;/, ''],
+    // Accept compact and fully qualified signatures used by the world screens.
+    [/public boolean keyPressed\((?:net\.minecraft\.client\.input\.)?KeyEvent event\)\s*\{/, 'public boolean keyPressed(int pkey, int pscan, int pmods) { var event = new CompatInput.Key(pkey);'],
+    [/super\.keyPressed\(event\)/, 'super.keyPressed(pkey, pscan, pmods)'],
+    [/public boolean mouseClicked\(net\.minecraft\.client\.input\.MouseButtonEvent event,\s*boolean (?:doubleClick|twice)\)\s*\{/, 'public boolean mouseClicked(double px, double py, int pbutton) { var event = new CompatInput.Click(px, py, pbutton);'],
+    [/super\.mouseClicked\(new net\.minecraft\.client\.input\.MouseButtonEvent\(\(event\.x\(\) - winX\)\/windowScale, \(event\.y\(\) - winY\)\/windowScale, event\.buttonInfo\(\)\), doubleClick\)/, 'super.mouseClicked((px-winX)/windowScale, (py-winY)/windowScale, pbutton)'],
+    [/super\.mouseClicked\(event,\s*(?:doubleClick|twice)\)/, 'super.mouseClicked(px, py, pbutton)'],
+    [/public boolean mouseReleased\(net\.minecraft\.client\.input\.MouseButtonEvent event\)\{return super\.mouseReleased\([^;]+;/, 'public boolean mouseReleased(double px,double py,int pbutton){return super.mouseReleased((px-winX)/windowScale,(py-winY)/windowScale,pbutton);'],
+    [/public boolean mouseDragged\(net\.minecraft\.client\.input\.MouseButtonEvent event,double dx,double dy\)\{return super\.mouseDragged\([^;]+;/, 'public boolean mouseDragged(double px,double py,int pbutton,double dx,double dy){return super.mouseDragged((px-winX)/windowScale,(py-winY)/windowScale,pbutton,dx/windowScale,dy/windowScale);'],
+    [/private void pointer\(net\.minecraft\.client\.input\.MouseButtonEvent event\)/, 'private void setValue(double next){if(value!=next){value=next;applyValue();}updateMessage();} private void pointer(CompatInput.Click event)'],
+    [/public void onClick\(net\.minecraft\.client\.input\.MouseButtonEvent event,boolean twice\)\{pointer\(event\);\}/, 'public void onClick(double px,double py){pointer(new CompatInput.Click(px,py,0));}'],
+    [/protected void onDrag\(net\.minecraft\.client\.input\.MouseButtonEvent event,double dx,double dy\)\{pointer\(event\);\}/, 'protected void onDrag(double px,double py,double dx,double dy){pointer(new CompatInput.Click(px,py,0));}'],
+    [/public void onRelease\(net\.minecraft\.client\.input\.MouseButtonEvent event\)/, 'public void onRelease(double px,double py)'],
+    // The quick wheel: mouse presses (1.21.8's MouseHandler.onPress takes raw ints), ChatScreen without the draft flag, head profiles and the older GameProfile shape.
+    [/@Inject\(method = "onButton"/, '@Inject(method = "onPress"'],
+    [/long window, MouseButtonInfo button, int action, CallbackInfo info/, 'long window, int button, int action, int mods, CallbackInfo info'],
+    [/RadialWheel\.press\(button\.button\(\)\)/, 'RadialWheel.press(button)'],
+    [/new net\.minecraft\.client\.gui\.screens\.ChatScreen\(([^,()]+),\s*false\)/, 'new net.minecraft.client.gui.screens.ChatScreen($1)'],
+    [/net\.minecraft\.world\.item\.component\.ResolvableProfile\.createResolved\(profile\)/, 'new net.minecraft.world.item.component.ResolvableProfile(profile)'],
+    [/net\.minecraft\.world\.item\.component\.ResolvableProfile\.createUnresolved\(name\)/, 'new net.minecraft.world.item.component.ResolvableProfile(java.util.Optional.of(name), java.util.Optional.empty(), new com.mojang.authlib.properties.PropertyMap())'],
+    [/\bprofile\.properties\(\)/, 'profile.getProperties()'],
+    [/\bprofile\.id\(\)/, 'profile.getId()'],
+    [/\bprofile\.name\(\)/, 'profile.getName()'],
+    [/return new GameProfile\(UUID\.fromString\(saved\.id\(\)\), saved\.name\(\), new PropertyMap\(ImmutableMultimap\.of\("textures", new Property\("textures", saved\.value\(\), saved\.signature\(\)\)\)\)\);/, 'var made = new GameProfile(UUID.fromString(saved.id()), saved.name()); made.getProperties().put("textures", new Property("textures", saved.value(), saved.signature())); return made;'],
+    // Sources that import the input classes instead of spelling them out.
+    [/import net\.minecraft\.client\.input\.MouseButton(?:Event|Info);/, ''],
+    [/public boolean mouseClicked\(MouseButtonEvent event,\s*boolean (?:doubleClick|twice)\)\s*\{/, 'public boolean mouseClicked(double px, double py, int pbutton) { var event = new CompatInput.Click(px, py, pbutton);'],
+    [/public void onClick\((?:net\.minecraft\.client\.input\.)?MouseButtonEvent event,\s*boolean \w+\)\s*\{/, 'public void onClick(double px, double py) { var event = new CompatInput.Click(px, py, 0);'],
+    [/info\.getProfile\(\)\.name\(\)/, 'info.getProfile().getName()'],
+    [/KeyMapping\.Category category = KeyMapping\.Category\.register\([^;]*\);/, 'String category = "key.categories.misc";'],
+    [/box\.addFormatter\(/, 'box.setFormatter('],
+    [/\.dimension\(\)\.identifier\(\)/, '.dimension().location()'],
+    [/client\.services\(\)\.sessionService\(\)/, 'client.getMinecraftSessionService()'],
+    [/info\.getProfile\(\)\.id\(\)/, 'info.getProfile().getId()'],
+    [/net\.minecraft\.world\.entity\.player\.PlayerSkin/, 'net.minecraft.client.resources.PlayerSkin'],
+    [/getGameProfile\(\)\.name\(\)/, 'getGameProfile().getName()'],
+    [/getGameProfile\(\)\.properties\(\)/, 'getGameProfile().getProperties()'],
+    [/skin\.body\(\) instanceof net\.minecraft\.core\.ClientAsset\.DownloadedTexture texture \? NpcProfile\.textureHash\(texture\.url\(\)\) : null/, 'NpcProfile.textureHash(skin.textureUrl())'],
+    [/\.body\(\)\.texturePath\(\)/, '.texture()'],
+    [/ state\.lightCoords = 15728880;/, ''],
+    // Client tests retain real raw coordinate dispatch on 1.21.8.
+    [/import net\.minecraft\.client\.input\.\*;/, ''],
+    [/var info=new MouseButtonInfo\(0,0\);var down=new MouseButtonEvent\(x,y,info\);/, 'var down=new CompatInput.Click(x,y,0);'],
+    [/screen\.mouseClicked\(down,false\)/, 'screen.mouseClicked(down.x(),down.y(),down.button())'],
+    [/screen\.mouseDragged\(down,10,0\)/, 'screen.mouseDragged(down.x(),down.y(),down.button(),10,0)'],
+    [/screen\.mouseReleased\(down\)/, 'screen.mouseReleased(down.x(),down.y(),down.button())'],
+    [/mouseClicked\(new MouseButtonEvent\(px,py,new MouseButtonInfo\(0,0\)\),false\)/, 'mouseClicked(px,py,0)'],
+    [/keyPressed\(new KeyEvent\(263,0,0\)\)/, 'keyPressed(263,0,0)'],
+    [/new net\.minecraft\.client\.gui\.screens\.ChatScreen\(("\/(?:msg|pay) "\+key\+" "),false\)/, 'new net.minecraft.client.gui.screens.ChatScreen($1)'],
+    // game tests only
+    [/other\.getCategory\(\) != net\.minecraft\.client\.KeyMapping\.Category\.DEBUG && /, ''],
+    [/new ChatScreen\("", false\)/, 'new ChatScreen("")'],
+    [/new net\.minecraft\.client\.gui\.screens\.ChatScreen\("", false\)/, 'new net.minecraft.client.gui.screens.ChatScreen("")'],
+    [/private static void modifiedKey\(ClientGameTestContext context,int key,int modifiers\) \{/, 'private static void modifiedKey(ClientGameTestContext context,int key,int modifiers) { if((modifiers & org.lwjgl.glfw.GLFW.GLFW_MOD_SHIFT)!=0)context.getInput().holdShift(); if((modifiers & (org.lwjgl.glfw.GLFW.GLFW_MOD_CONTROL|org.lwjgl.glfw.GLFW.GLFW_MOD_SUPER))!=0)context.getInput().holdControl();'],
+    [/var input=\(net\.fabricmc\.fabric\.mixin\.client\.gametest\.input\.KeyboardHandlerAccessor\)\(Object\)client\.keyboardHandler;/, 'var input=client.keyboardHandler;'],
+    [/var event=new net\.minecraft\.client\.input\.KeyEvent\(key,0,modifiers\);/, '// 1.21.8 keyPress receives raw key and modifier arguments.'],
+    [/input\.invokeOnKey\(client\.getWindow\(\)\.getWindow\(\),org\.lwjgl\.glfw\.GLFW\.(GLFW_PRESS|GLFW_RELEASE),event\);/, 'input.keyPress(client.getWindow().getWindow(),key,0,org.lwjgl.glfw.GLFW.$1,modifiers);'],
+    [/\}\);context\.waitTicks\(1\);/, '});context.getInput().releaseShift();context.getInput().releaseControl();context.waitTicks(1);'],
+    [/\.onPress\(new net\.minecraft\.client\.input\.KeyEvent\(257,\s*0,\s*0\)\)/, '.onPress()'],
+]
+def translated = layout.buildDirectory.dir('translated/client-java')
+def translate = tasks.register('translateClientSources', Sync) {
+    inputs.property('rules', rules.toString())
+    from('src/client/java') {
+        exclude '**/ChatEditBox.java'
+        // The bundled UI font needs 1.21.11's font provider API; 1.21.8 keeps the game's font (src/compat1218 has the stub).
+        exclude '**/PaleFont.java'
+        exclude '**/mixin/FontAccessMixin.java'
+        exclude '**/mixin/ScreenFontMixin.java'
+        // 1.21.8's GuiGraphics tooltip methods have other signatures: tooltips there keep the old behaviour.
+        exclude '**/mixin/WindowTooltipMixin.java'
+        exclude '**/NavWorldRenderer.java' // 1.21.8 has its own (src/compat1218): the world drawing differs completely
+        filesMatching('**/*.java') { filter { String line -> rules.inject(line) { text, rule -> text.replaceAll(rule[0], rule[1]) } } }
+    }
+    from('src/compat1218/java')
+    into(translated)
+}
+sourceSets.client.java.setSrcDirs([translated])
+// The client game tests are translated the same way, so the smoke test can run on 1.21.8 too.
+def translatedTests = layout.buildDirectory.dir('translated/gametest-java')
+def translateTests = tasks.register('translateGametestSources', Sync) {
+    from('src/testSupport/java')
+    inputs.property('rules', rules.toString())
+    from('src/gametest/java') {
+        filesMatching('**/*.java') { filter { String line -> rules.inject(line) { text, rule -> text.replaceAll(rule[0], rule[1]) } } }
+    }
+    into(translatedTests)
+}
+sourceSets.gametest.java.setSrcDirs([translatedTests])
+tasks.named('compileGametestJava') { dependsOn translateTests }
+tasks.named('compileClientJava') { dependsOn translate }
+tasks.matching { it.name == 'sourcesJar' }.configureEach { dependsOn translate }
+// ... and its two mixins are not registered on 1.21.8 (each sits on its own line of the mixin config, so dropping the line keeps the JSON valid).
+tasks.matching { it.name == 'processClientResources' }.configureEach {
+    filesMatching('paletale.client.mixins.json') { filter { String line -> line.contains('FontAccessMixin') || line.contains('ScreenFontMixin') || line.contains('WindowTooltipMixin') ? null : line } }
+}

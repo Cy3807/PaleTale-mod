@@ -1,0 +1,1033 @@
+{
+  "fixture": "isolated mock database and mod session; not a deployed test endpoint",
+  "cases": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/api/mcmod/notifications"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "unread": 4,
+          "unreadTotal": 4,
+          "items": [
+            {
+              "id": 105,
+              "kind": "price",
+              "adCode": "100041",
+              "adTitle": "广告41",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:45:00Z",
+              "read": false
+            },
+            {
+              "id": 104,
+              "kind": "review_map",
+              "adCode": "",
+              "adTitle": "王城夜景",
+              "adOwner": "",
+              "adOwnerId": "",
+              "itemId": 7,
+              "product": "",
+              "change": "地图画待审核",
+              "detail": "地图画待审核",
+              "createdAt": "2026-10-22T10:44:00Z",
+              "read": false
+            },
+            {
+              "id": 103,
+              "kind": "price",
+              "adCode": "100042",
+              "adTitle": "广告42",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:43:00Z",
+              "read": false
+            },
+            {
+              "id": 102,
+              "kind": "state",
+              "adCode": "100041",
+              "adTitle": "广告41",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:42:00Z",
+              "read": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/api/mcmod/notifications?v=2&view=unread"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "version": 2,
+          "mode": "unread",
+          "unreadTotal": 4,
+          "previewLimit": 20,
+          "hasMore": false,
+          "items": [
+            {
+              "id": 105,
+              "kind": "price",
+              "adCode": "100041",
+              "adTitle": "广告41",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:45:00Z",
+              "read": false,
+              "adId": 41,
+              "targetType": "ad",
+              "targetId": 41,
+              "available": true
+            },
+            {
+              "id": 104,
+              "kind": "review_map",
+              "adCode": "",
+              "adTitle": "王城夜景",
+              "adOwner": "",
+              "adOwnerId": "",
+              "itemId": 7,
+              "product": "",
+              "change": "地图画待审核",
+              "detail": "地图画待审核",
+              "createdAt": "2026-10-22T10:44:00Z",
+              "read": false,
+              "adId": null,
+              "targetType": "item",
+              "targetId": 7,
+              "available": true
+            },
+            {
+              "id": 103,
+              "kind": "price",
+              "adCode": "100042",
+              "adTitle": "广告42",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:43:00Z",
+              "read": false,
+              "adId": 42,
+              "targetType": "ad",
+              "targetId": 42,
+              "available": true
+            },
+            {
+              "id": 102,
+              "kind": "state",
+              "adCode": "100041",
+              "adTitle": "广告41",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:42:00Z",
+              "read": false,
+              "adId": 41,
+              "targetType": "ad",
+              "targetId": 41,
+              "available": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/api/mcmod/notifications?v=2&view=groups"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "version": 2,
+          "snapshot": "r9mqvND43B_uc8Yi3EqdOiLk",
+          "snapshotAt": "2026-10-22T09:10:11.456Z",
+          "expiresAt": "2026-10-22T09:15:11.456Z",
+          "total": 5,
+          "totalGroups": 3,
+          "unreadAtSnapshot": 4,
+          "mode": "groups",
+          "pageSize": 8,
+          "groups": [
+            {
+              "key": "ad:41",
+              "adId": 41,
+              "targetType": "ad",
+              "targetId": 41,
+              "available": true,
+              "adCode": "100041",
+              "title": "广告41",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 3,
+              "unreadAtSnapshot": 2,
+              "latestId": 105,
+              "latestAt": "2026-10-22T10:45:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6InI5bXF2TkQ0M0JfdWM4WWkzRXFkT2lMayIsImdyb3VwIjoiYWQ6NDEiLCJvZmZzZXQiOjB9"
+            },
+            {
+              "key": "notification:104",
+              "adId": null,
+              "targetType": "item",
+              "targetId": 7,
+              "available": true,
+              "adCode": "",
+              "title": "王城夜景",
+              "latestKind": "review_map",
+              "latestDetail": "地图画待审核",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 104,
+              "latestAt": "2026-10-22T10:44:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6InI5bXF2TkQ0M0JfdWM4WWkzRXFkT2lMayIsImdyb3VwIjoibm90aWZpY2F0aW9uOjEwNCIsIm9mZnNldCI6MH0"
+            },
+            {
+              "key": "ad:42",
+              "adId": 42,
+              "targetType": "ad",
+              "targetId": 42,
+              "available": true,
+              "adCode": "100042",
+              "title": "广告42",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 103,
+              "latestAt": "2026-10-22T10:43:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6InI5bXF2TkQ0M0JfdWM4WWkzRXFkT2lMayIsImdyb3VwIjoiYWQ6NDIiLCJvZmZzZXQiOjB9"
+            }
+          ],
+          "nextCursor": null,
+          "unreadTotal": 4
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/api/mcmod/notifications?v=2&view=group&cursor=eyJzbmFwc2hvdCI6InI5bXF2TkQ0M0JfdWM4WWkzRXFkT2lMayIsImdyb3VwIjoiYWQ6NDEiLCJvZmZzZXQiOjB9"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "version": 2,
+          "snapshot": "r9mqvND43B_uc8Yi3EqdOiLk",
+          "snapshotAt": "2026-10-22T09:10:11.456Z",
+          "expiresAt": "2026-10-22T09:15:11.456Z",
+          "total": 5,
+          "totalGroups": 3,
+          "unreadAtSnapshot": 4,
+          "mode": "group",
+          "groupKey": "ad:41",
+          "count": 3,
+          "pageSize": 8,
+          "items": [
+            {
+              "id": 105,
+              "kind": "price",
+              "adCode": "100041",
+              "adTitle": "广告41",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:45:00Z",
+              "read": false,
+              "adId": 41,
+              "targetType": "ad",
+              "targetId": 41,
+              "available": true
+            },
+            {
+              "id": 102,
+              "kind": "state",
+              "adCode": "100041",
+              "adTitle": "广告41",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:42:00Z",
+              "read": false,
+              "adId": 41,
+              "targetType": "ad",
+              "targetId": 41,
+              "available": true
+            },
+            {
+              "id": 101,
+              "kind": "price",
+              "adCode": "100041",
+              "adTitle": "广告41",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:41:00Z",
+              "read": true,
+              "adId": 41,
+              "targetType": "ad",
+              "targetId": 41,
+              "available": true
+            }
+          ],
+          "missingIds": [],
+          "nextCursor": null,
+          "unreadTotal": 4
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/api/mcmod/notifications/read?v=2",
+        "body": {
+          "ids": [
+            105,
+            102
+          ]
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "version": 2,
+          "ok": true,
+          "confirmedIds": [
+            105,
+            102
+          ],
+          "unreadTotal": 2,
+          "restart": true
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/api/mcmod/notifications?v=2&view=group&cursor=eyJzbmFwc2hvdCI6InI5bXF2TkQ0M0JfdWM4WWkzRXFkT2lMayIsImdyb3VwIjoiYWQ6NDEiLCJvZmZzZXQiOjB9"
+      },
+      "response": {
+        "status": 410,
+        "body": {
+          "ok": false,
+          "code": "SNAPSHOT_EXPIRED",
+          "message": "通知列表已变化或过期，请重新加载。",
+          "restart": true
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/api/mcmod/notifications/delete?v=2",
+        "body": {
+          "ids": [
+            103
+          ]
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "version": 2,
+          "ok": true,
+          "confirmedIds": [
+            103
+          ],
+          "deletedCount": 1,
+          "unreadTotal": 1,
+          "restart": true
+        }
+      }
+    },
+    {
+      "scenario": "pagination",
+      "request": {
+        "method": "GET",
+        "path": "/api/mcmod/notifications?v=2&view=groups"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "version": 2,
+          "snapshot": "gfCyK4XmkB5OQET-1x3eyIyd",
+          "snapshotAt": "2026-10-22T09:10:11.513Z",
+          "expiresAt": "2026-10-22T09:15:11.513Z",
+          "total": 38,
+          "totalGroups": 18,
+          "unreadAtSnapshot": 38,
+          "mode": "groups",
+          "pageSize": 8,
+          "groups": [
+            {
+              "key": "ad:1",
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true,
+              "adCode": "100001",
+              "title": "广告1",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 21,
+              "unreadAtSnapshot": 21,
+              "latestId": 219,
+              "latestAt": "2026-10-22T10:39:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MSIsIm9mZnNldCI6MH0"
+            },
+            {
+              "key": "ad:18",
+              "adId": 18,
+              "targetType": "ad",
+              "targetId": 18,
+              "available": true,
+              "adCode": "100018",
+              "title": "广告18",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 117,
+              "latestAt": "2026-10-22T10:57:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MTgiLCJvZmZzZXQiOjB9"
+            },
+            {
+              "key": "ad:17",
+              "adId": 17,
+              "targetType": "ad",
+              "targetId": 17,
+              "available": true,
+              "adCode": "100017",
+              "title": "广告17",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 116,
+              "latestAt": "2026-10-22T10:56:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MTciLCJvZmZzZXQiOjB9"
+            },
+            {
+              "key": "ad:16",
+              "adId": 16,
+              "targetType": "ad",
+              "targetId": 16,
+              "available": true,
+              "adCode": "100016",
+              "title": "广告16",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 115,
+              "latestAt": "2026-10-22T10:55:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MTYiLCJvZmZzZXQiOjB9"
+            },
+            {
+              "key": "ad:15",
+              "adId": 15,
+              "targetType": "ad",
+              "targetId": 15,
+              "available": true,
+              "adCode": "100015",
+              "title": "广告15",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 114,
+              "latestAt": "2026-10-22T10:54:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MTUiLCJvZmZzZXQiOjB9"
+            },
+            {
+              "key": "ad:14",
+              "adId": 14,
+              "targetType": "ad",
+              "targetId": 14,
+              "available": true,
+              "adCode": "100014",
+              "title": "广告14",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 113,
+              "latestAt": "2026-10-22T10:53:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MTQiLCJvZmZzZXQiOjB9"
+            },
+            {
+              "key": "ad:13",
+              "adId": 13,
+              "targetType": "ad",
+              "targetId": 13,
+              "available": true,
+              "adCode": "100013",
+              "title": "广告13",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 112,
+              "latestAt": "2026-10-22T10:52:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MTMiLCJvZmZzZXQiOjB9"
+            },
+            {
+              "key": "ad:12",
+              "adId": 12,
+              "targetType": "ad",
+              "targetId": 12,
+              "available": true,
+              "adCode": "100012",
+              "title": "广告12",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 111,
+              "latestAt": "2026-10-22T10:51:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MTIiLCJvZmZzZXQiOjB9"
+            }
+          ],
+          "nextCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiKiIsIm9mZnNldCI6OH0",
+          "unreadTotal": 38
+        }
+      }
+    },
+    {
+      "scenario": "pagination",
+      "request": {
+        "method": "GET",
+        "path": "/api/mcmod/notifications?v=2&view=groups&cursor=eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiKiIsIm9mZnNldCI6OH0"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "version": 2,
+          "snapshot": "gfCyK4XmkB5OQET-1x3eyIyd",
+          "snapshotAt": "2026-10-22T09:10:11.513Z",
+          "expiresAt": "2026-10-22T09:15:11.513Z",
+          "total": 38,
+          "totalGroups": 18,
+          "unreadAtSnapshot": 38,
+          "mode": "groups",
+          "pageSize": 8,
+          "groups": [
+            {
+              "key": "ad:11",
+              "adId": 11,
+              "targetType": "ad",
+              "targetId": 11,
+              "available": true,
+              "adCode": "100011",
+              "title": "广告11",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 110,
+              "latestAt": "2026-10-22T10:50:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MTEiLCJvZmZzZXQiOjB9"
+            },
+            {
+              "key": "ad:10",
+              "adId": 10,
+              "targetType": "ad",
+              "targetId": 10,
+              "available": true,
+              "adCode": "100010",
+              "title": "广告10",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 109,
+              "latestAt": "2026-10-22T10:49:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MTAiLCJvZmZzZXQiOjB9"
+            },
+            {
+              "key": "ad:9",
+              "adId": 9,
+              "targetType": "ad",
+              "targetId": 9,
+              "available": true,
+              "adCode": "100009",
+              "title": "广告9",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 108,
+              "latestAt": "2026-10-22T10:48:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6OSIsIm9mZnNldCI6MH0"
+            },
+            {
+              "key": "ad:8",
+              "adId": 8,
+              "targetType": "ad",
+              "targetId": 8,
+              "available": true,
+              "adCode": "100008",
+              "title": "广告8",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 107,
+              "latestAt": "2026-10-22T10:47:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6OCIsIm9mZnNldCI6MH0"
+            },
+            {
+              "key": "ad:7",
+              "adId": 7,
+              "targetType": "ad",
+              "targetId": 7,
+              "available": true,
+              "adCode": "100007",
+              "title": "广告7",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 106,
+              "latestAt": "2026-10-22T10:46:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6NyIsIm9mZnNldCI6MH0"
+            },
+            {
+              "key": "ad:6",
+              "adId": 6,
+              "targetType": "ad",
+              "targetId": 6,
+              "available": true,
+              "adCode": "100006",
+              "title": "广告6",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 105,
+              "latestAt": "2026-10-22T10:45:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6NiIsIm9mZnNldCI6MH0"
+            },
+            {
+              "key": "ad:5",
+              "adId": 5,
+              "targetType": "ad",
+              "targetId": 5,
+              "available": true,
+              "adCode": "100005",
+              "title": "广告5",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 104,
+              "latestAt": "2026-10-22T10:44:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6NSIsIm9mZnNldCI6MH0"
+            },
+            {
+              "key": "ad:4",
+              "adId": 4,
+              "targetType": "ad",
+              "targetId": 4,
+              "available": true,
+              "adCode": "100004",
+              "title": "广告4",
+              "latestKind": "price",
+              "latestDetail": "橡木：64 → 48",
+              "count": 1,
+              "unreadAtSnapshot": 1,
+              "latestId": 103,
+              "latestAt": "2026-10-22T10:43:00Z",
+              "detailsCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6NCIsIm9mZnNldCI6MH0"
+            }
+          ],
+          "nextCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiKiIsIm9mZnNldCI6MTZ9",
+          "unreadTotal": 38
+        }
+      }
+    },
+    {
+      "scenario": "pagination",
+      "request": {
+        "method": "GET",
+        "path": "/api/mcmod/notifications?v=2&view=group&cursor=eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MSIsIm9mZnNldCI6MH0"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "version": 2,
+          "snapshot": "gfCyK4XmkB5OQET-1x3eyIyd",
+          "snapshotAt": "2026-10-22T09:10:11.513Z",
+          "expiresAt": "2026-10-22T09:15:11.513Z",
+          "total": 38,
+          "totalGroups": 18,
+          "unreadAtSnapshot": 38,
+          "mode": "group",
+          "groupKey": "ad:1",
+          "count": 21,
+          "pageSize": 8,
+          "items": [
+            {
+              "id": 219,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:39:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 218,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:38:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 217,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:37:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 216,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:36:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 215,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:35:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 214,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:34:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 213,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:33:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 212,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:32:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            }
+          ],
+          "missingIds": [],
+          "nextCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MSIsIm9mZnNldCI6OH0",
+          "unreadTotal": 38
+        }
+      }
+    },
+    {
+      "scenario": "pagination",
+      "request": {
+        "method": "GET",
+        "path": "/api/mcmod/notifications?v=2&view=group&cursor=eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MSIsIm9mZnNldCI6OH0"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "version": 2,
+          "snapshot": "gfCyK4XmkB5OQET-1x3eyIyd",
+          "snapshotAt": "2026-10-22T09:10:11.513Z",
+          "expiresAt": "2026-10-22T09:15:11.513Z",
+          "total": 38,
+          "totalGroups": 18,
+          "unreadAtSnapshot": 38,
+          "mode": "group",
+          "groupKey": "ad:1",
+          "count": 21,
+          "pageSize": 8,
+          "items": [
+            {
+              "id": 211,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:31:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 210,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:30:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 209,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:29:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 208,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:28:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 207,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:27:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 206,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:26:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 205,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:25:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            },
+            {
+              "id": 204,
+              "kind": "price",
+              "adCode": "100001",
+              "adTitle": "广告1",
+              "adOwner": "广告主",
+              "adOwnerId": "Owner",
+              "itemId": 0,
+              "product": "橡木",
+              "change": "64 → 48",
+              "detail": "橡木：64 → 48",
+              "createdAt": "2026-10-22T10:24:00Z",
+              "read": false,
+              "adId": 1,
+              "targetType": "ad",
+              "targetId": 1,
+              "available": true
+            }
+          ],
+          "missingIds": [],
+          "nextCursor": "eyJzbmFwc2hvdCI6ImdmQ3lLNFhta0I1T1FFVC0xeDNleUl5ZCIsImdyb3VwIjoiYWQ6MSIsIm9mZnNldCI6MTZ9",
+          "unreadTotal": 38
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,393 @@
+{
+  "world": "worlds:spawn",
+  "spawn": {
+    "x": 111.5,
+    "y": 54.0,
+    "z": -15.5
+  },
+  "npcs": [
+    {
+      "id": "npc-0",
+      "name": "尼科(吟游诗人)",
+      "role": "吟游诗人",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:note_block",
+      "x": 75.33681412143335,
+      "y": 54.0,
+      "z": 0.33000001311302185
+    },
+    {
+      "id": "npc-1",
+      "name": "德马克(农作物商店)",
+      "role": "农作物商店",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:wheat",
+      "x": 42.151946097197985,
+      "y": 54.0,
+      "z": 9.021311834525957
+    },
+    {
+      "id": "npc-2",
+      "name": "威威尔(厨师)",
+      "role": "厨师",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:cooked_beef",
+      "x": 71.09895752696836,
+      "y": 54.0,
+      "z": 51.40513129696706
+    },
+    {
+      "id": "npc-3",
+      "name": "宓-威博(传送/教程)",
+      "role": "传送/教程",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:compass",
+      "x": 102.11679663834,
+      "y": 54.0,
+      "z": -11.723981133186156
+    },
+    {
+      "id": "npc-4",
+      "name": "维尔诺(季节活动商店)",
+      "role": "季节活动商店",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:sweet_berries",
+      "x": 129.51993067499313,
+      "y": 54.0,
+      "z": -5.501093483658895
+    },
+    {
+      "id": "npc-5",
+      "name": "都灵(桌游商人)",
+      "role": "桌游商人",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:chest",
+      "x": 79.30888228214907,
+      "y": 54.0,
+      "z": 0.3617076412854538
+    },
+    {
+      "id": "npc-6",
+      "name": "荔-佩(酿酒商店)",
+      "role": "酿酒商店",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:potion",
+      "x": 57.98032124598891,
+      "y": 54.0,
+      "z": 28.917573708764284
+    },
+    {
+      "id": "npc-7",
+      "name": "塞班(奥术师)",
+      "role": "奥术师",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:enchanted_book",
+      "x": 68.3670097847606,
+      "y": 54.5,
+      "z": 30.017243545822733
+    },
+    {
+      "id": "npc-8",
+      "name": "维克(种族药水)",
+      "role": "种族药水",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:potion",
+      "x": 69.72605297895733,
+      "y": 54.0,
+      "z": 25.499447322991696
+    },
+    {
+      "id": "npc-9",
+      "name": "猞(矿物商店)",
+      "role": "矿物商店",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:gold_ingot",
+      "x": 28.645573604984737,
+      "y": 43.0,
+      "z": 28.914960669715146
+    },
+    {
+      "id": "npc-10",
+      "name": "林门(宗教玩法咨询)",
+      "role": "宗教玩法咨询",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:book",
+      "x": 114.37179722427794,
+      "y": 55.0,
+      "z": 16.122230013102303
+    },
+    {
+      "id": "npc-11",
+      "name": "比比鲁米(动物方块商)",
+      "role": "动物方块商",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:egg",
+      "x": 26.614027470835413,
+      "y": 39.0,
+      "z": 40.94699944918823
+    },
+    {
+      "id": "npc-12",
+      "name": "克林(查看国家总览)",
+      "role": "查看国家总览",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:map",
+      "x": 108.66928868637615,
+      "y": 55.0,
+      "z": 16.249210215383
+    },
+    {
+      "id": "npc-13",
+      "name": "菲斯(鱼类商店)",
+      "role": "鱼类商店",
+      "entityType": "minecraft:player",
+      "icon": "minecraft:fishing_rod",
+      "x": 56.13090907532497,
+      "y": 54.0625,
+      "z": 2.370101288133334
+    }
+  ],
+  "shortcuts": [
+    {
+      "id": "shortcut-0",
+      "name": "主城快捷传送",
+      "role": "",
+      "entityType": "minecraft:vex",
+      "icon": "minecraft:ender_pearl",
+      "areas": [
+        "主城",
+        "活动传送点",
+        "飞空艇"
+      ],
+      "x": 121.84997401970722,
+      "y": 55.419229524951255,
+      "z": -9.719794582201965
+    },
+    {
+      "id": "shortcut-1",
+      "name": "主城快捷传送",
+      "role": "",
+      "entityType": "minecraft:vex",
+      "icon": "minecraft:ender_pearl",
+      "areas": [
+        "地牢抽奖营地",
+        "远征驻地"
+      ],
+      "x": 1.33659631837981,
+      "y": 28.418651709011428,
+      "z": 76.6670473742807
+    },
+    {
+      "id": "shortcut-2",
+      "name": "主城快捷传送",
+      "role": "",
+      "entityType": "minecraft:vex",
+      "icon": "minecraft:ender_pearl",
+      "areas": [
+        "家具商城"
+      ],
+      "x": 158.89713635024395,
+      "y": 10.431713457419871,
+      "z": 20.64476603213847
+    },
+    {
+      "id": "shortcut-3",
+      "name": "主城快捷传送",
+      "role": "",
+      "entityType": "minecraft:vex",
+      "icon": "minecraft:ender_pearl",
+      "areas": [
+        "战争名人堂"
+      ],
+      "x": 166.34592950165333,
+      "y": 62.00386122544851,
+      "z": 199.81180430486398
+    },
+    {
+      "id": "shortcut-4",
+      "name": "主城快捷传送",
+      "role": "",
+      "entityType": "minecraft:vex",
+      "icon": "minecraft:ender_pearl",
+      "areas": [
+        "活动礼盒"
+      ],
+      "x": 137.43531096726954,
+      "y": 31.419229524951245,
+      "z": 23.80377083222837
+    },
+    {
+      "id": "shortcut-5",
+      "name": "主城快捷传送",
+      "role": "",
+      "entityType": "minecraft:vex",
+      "icon": "minecraft:ender_pearl",
+      "areas": [
+        "玩家聚集广场"
+      ],
+      "x": 143.73357820256527,
+      "y": 55.26248988184809,
+      "z": 36.22613789301528
+    },
+    {
+      "id": "shortcut-6",
+      "name": "主城快捷传送",
+      "role": "",
+      "entityType": "minecraft:vex",
+      "icon": "minecraft:ender_pearl",
+      "areas": [
+        "铁匠铺"
+      ],
+      "x": 118.54835223496043,
+      "y": 60.5,
+      "z": 150.51915163416052
+    },
+    {
+      "id": "shortcut-7",
+      "name": "主城快捷传送",
+      "role": "",
+      "entityType": "minecraft:vex",
+      "icon": "minecraft:ender_pearl",
+      "areas": [
+        "集市"
+      ],
+      "x": 61.78756773518305,
+      "y": 55.045506522168054,
+      "z": 14.640714227604603
+    }
+  ],
+  "destinations": [
+    {
+      "id": "area-0",
+      "name": "活动礼盒",
+      "role": "在这里可以抽取周本宝箱，以及活动礼盒！！",
+      "icon": "minecraft:chest",
+      "model": "",
+      "menu": "活动礼盒快捷传送",
+      "slot": "1_1",
+      "x": 139.5,
+      "y": 23.0,
+      "z": 22.5
+    },
+    {
+      "id": "area-1",
+      "name": "铁匠铺",
+      "role": "在这里可以合成/强化你的盔甲！",
+      "icon": "minecraft:anvil",
+      "model": "",
+      "menu": "铁匠铺快捷传送",
+      "slot": "1_2",
+      "x": 123.5,
+      "y": 60.0,
+      "z": 153.5
+    },
+    {
+      "id": "area-2",
+      "name": "集市",
+      "role": "在这里可以与不死商人进行交易！",
+      "icon": "minecraft:lime_bundle",
+      "model": "",
+      "menu": "集市快捷传送",
+      "slot": "1_3",
+      "x": 53.5,
+      "y": 52.0,
+      "z": 14.5
+    },
+    {
+      "id": "area-3",
+      "name": "家具商城",
+      "role": "在这里可以购买装饰品！",
+      "icon": "minecraft:paper",
+      "model": "smc:living_room_armchair",
+      "menu": "家具商城快捷传送",
+      "slot": "1_4",
+      "x": 168.5,
+      "y": 9.0,
+      "z": 23.5
+    },
+    {
+      "id": "area-4",
+      "name": "礼物抽奖",
+      "role": "在这里可以用宝箱钥匙获取藏品！",
+      "icon": "minecraft:chest",
+      "model": "",
+      "menu": "礼物抽奖快捷传送",
+      "slot": "1_5",
+      "x": 167.5,
+      "y": 39.0,
+      "z": 23.5
+    },
+    {
+      "id": "area-5",
+      "name": "飞空艇",
+      "role": "在这里开始新的冒险!",
+      "icon": "minecraft:yellow_harness",
+      "model": "",
+      "menu": "飞空艇快捷传送",
+      "slot": "1_6",
+      "x": 105.5,
+      "y": 54.0,
+      "z": -9.5
+    },
+    {
+      "id": "area-6",
+      "name": "远征驻地",
+      "role": "在这里了解远征相关事项",
+      "icon": "minecraft:iron_sword",
+      "model": "",
+      "menu": "远征驻地快捷传送",
+      "slot": "1_7",
+      "x": 0.5,
+      "y": 27.0,
+      "z": 83.5
+    },
+    {
+      "id": "area-7",
+      "name": "战争名人堂",
+      "role": "在这里查看战争排名!",
+      "icon": "minecraft:netherite_axe",
+      "model": "",
+      "menu": "战争名人堂",
+      "slot": "1_8",
+      "x": 174.5,
+      "y": 61.0,
+      "z": 195.5
+    },
+    {
+      "id": "area-8",
+      "name": "活动传送点",
+      "role": "在这里传送到活动传送点!",
+      "icon": "minecraft:sweet_berries",
+      "model": "",
+      "menu": "活动传送点",
+      "slot": "1_9",
+      "x": 142.5,
+      "y": 54.0,
+      "z": 4.5
+    },
+    {
+      "id": "area-9",
+      "name": "玩家聚集广场",
+      "role": "在这里传送到玩家聚集广场!；经常有歌手在这里唱歌!",
+      "icon": "minecraft:player_head",
+      "model": "",
+      "menu": "玩家聚集广场",
+      "slot": "2_1",
+      "x": 142.5,
+      "y": 54.0,
+      "z": 37.5
+    },
+    {
+      "id": "area-10",
+      "name": "地牢抽奖营地",
+      "role": "在这里传送到地牢抽奖营地!；可以兑换地牢得到的钥匙!",
+      "icon": "minecraft:reinforced_deepslate",
+      "model": "",
+      "menu": "地牢抽奖营地",
+      "slot": "2_2",
+      "x": -11.5,
+      "y": 26.0,
+      "z": 63.5
+    }
+  ]
+}

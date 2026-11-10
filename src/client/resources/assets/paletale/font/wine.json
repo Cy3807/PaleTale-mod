@@ -1,0 +1,157 @@
+{
+ "providers": [
+  {
+   "type": "bitmap",
+   "file": "minecraft:mob_effect/speed.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue000"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:mob_effect/haste.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue001"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:mob_effect/strength.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue002"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:mob_effect/jump_boost.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue003"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:mob_effect/resistance.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue004"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:mob_effect/fire_resistance.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue005"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:mob_effect/hunger.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue006"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:mob_effect/absorption.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue007"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:mob_effect/glowing.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue008"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:mob_effect/luck.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue009"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:mob_effect/unluck.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue00a"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:item/milk_bucket.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue00b"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:item/totem_of_undying.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue00c"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:item/name_tag.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue00d"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:item/enchanted_book.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue00e"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:item/writable_book.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue00f"
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "minecraft:item/barrier.png",
+   "ascent": 7,
+   "height": 8,
+   "chars": [
+    "\ue010"
+   ]
+  }
+ ]
+}

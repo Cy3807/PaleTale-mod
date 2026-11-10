@@ -1,0 +1,163 @@
+plugins {
+    id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+}
+// Default build targets minecraft_version (1.21.11). `-Pmc_compat=1.21.8` builds the older 1.21.8 variant from the same sources:
+// src/client/java is translated line by line (see scripts/compat-1.21.8.gradle) before compiling. See README.
+def compat = project.findProperty('mc_compat')
+// Release jars are named Paletale-<mod version>-<Minecraft version>.jar (always with the client version, also for the main 1.21.11 build).
+tasks.matching { it.name == 'remapJar' }.configureEach { archiveClassifier = project.minecraft_version }
+tasks.matching { it.name == 'remapSourcesJar' }.configureEach { archiveClassifier = project.minecraft_version + '-sources' }
+tasks.matching { it.name in ['jar', 'sourcesJar'] }.configureEach { archiveClassifier = (it.name == 'jar' ? 'dev-' : 'dev-sources-') + project.minecraft_version }
+version = project.mod_version
+group = project.maven_group
+base { archivesName = project.archives_base_name }
+loom {
+    accessWidenerPath = file('src/client/resources/paletale.accesswidener')
+    clientOnlyMinecraftJar()
+    splitEnvironmentSourceSets()
+    mods {
+        paletale {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+repositories {
+    maven { url = 'https://maven.shedaniel.me/' }
+    maven { url = 'https://maven.terraformersmc.com/releases/' }
+}
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    // Optional: the in-game settings screen appears only when Cloth Config + Mod Menu are installed.
+    modCompileOnly "me.shedaniel.cloth:cloth-config-fabric:${compat ? '19.0.147' : '21.11.152'}"
+    modCompileOnly "com.terraformersmc:modmenu:${compat ? '15.0.0' : '17.0.1'}"
+    // Gson ships with Minecraft. No HTTP credentials or extra runtime are bundled.
+    implementation('com.google.code.gson:gson:2.13.2') { transitive = false }
+}
+processClientResources {
+    inputs.property 'version', project.version
+    inputs.property 'minecraft', project.minecraft_version
+    filesMatching('fabric.mod.json') { expand version: project.version, minecraft: project.minecraft_version }
+}
+tasks.withType(JavaCompile).configureEach { options.release = 21 }
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+    withSourcesJar()
+}
+tasks.register('regressionTest', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'cn.paletale.companion.MarketRegressionTest'
+}
+check.dependsOn regressionTest
+tasks.named('test') {
+    failOnNoDiscoveredTests = false
+    dependsOn regressionTest
+}
+fabricApi.configureTests {
+    createSourceSet = true
+    modId = 'paletale-test'
+    enableGameTests = false
+    enableClientGameTests = true
+}
+sourceSets.test.java.srcDir('src/testSupport/java')
+sourceSets.gametest.java.srcDir('src/testSupport/java')
+sourceSets.gametest.compileClasspath += sourceSets.client.output
+sourceSets.gametest.runtimeClasspath += sourceSets.client.output
+loom.runs.clientGameTest.runDir('build/gametest')
+if (project.hasProperty('itemPackV24')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.itemPackV24=true');loom.runs.clientGameTest.vmArg('-Dpaletale.test.itemPackSourceV24='+file('build/smc-item-pack-v24/smc-items-v24-qa.zip').absolutePath) }
+if (project.hasProperty('itemPackV25')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.itemPackV25=true');loom.runs.clientGameTest.vmArg('-Dpaletale.test.itemPackSourceV25='+file('build/smc-item-pack-v25/smc-items-v25-qa.zip').absolutePath) }
+if (project.hasProperty('worldOnly')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.worldOnly=true') }
+// -PxaeroDir=<folder with Xaero's Minimap + Xaero Lib jars> runs the client game test with the real Xaero installed (never bundled; their licence forbids redistribution).
+if (project.hasProperty('xaeroDir')) {
+    dependencies { modLocalRuntime fileTree(dir: project.property('xaeroDir'), include: ['xaerominimap-*.jar', 'xaerolib-*.jar']) }
+    loom.runs.clientGameTest.vmArg('-Dpaletale.test.xaero=true')
+}
+// -PmapAddonDir=<folder with the SimMC map addon + Xaero's Minimap + World Map jars> checks that PaleTale runs beside the addon and reads its route target type.
+if (project.hasProperty('mapAddonDir')) {
+    dependencies { modLocalRuntime fileTree(dir: project.property('mapAddonDir'), include: ['xaerominimap-*.jar', 'xaeroworldmap-*.jar', 'xaerolib-*.jar', 'simmc-map-addon-*.jar']) }
+    loom.runs.clientGameTest.vmArg('-Dpaletale.test.mapAddon=true')
+}
+if (project.hasProperty('radialPerf')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.radialPerf=true') }
+if (project.hasProperty('guideOnly')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.guideOnly=true') }
+if (project.hasProperty('signOnly')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.signOnly=true') }
+if (project.hasProperty('noticesOnly')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.noticesOnly=true') }
+if (project.hasProperty('legacyUiComparison')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.legacyUiComparison=true') }
+if (project.hasProperty('archiveOnly')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.archiveOnly=true') }
+if (project.hasProperty('liveMarket')) {
+    loom.runs.clientGameTest.vmArg('-Dpaletale.test.live=true')
+}
+
+if (project.hasProperty('nativeModels')) {
+    loom.runs.clientGameTest.vmArg('-Dpaletale.test.nativeModels=true')
+    tasks.named('runClientGameTest') {
+        doFirst {
+            def fixture = layout.buildDirectory.dir('native-qa/paletale-native-qa').get().asFile
+            if (!new File(fixture, 'pack.mcmeta').isFile()) throw new GradleException('Local-only QA fixture missing (not part of the public repo)')
+            copy { from fixture; into layout.buildDirectory.dir('gametest/resourcepacks/paletale-native-qa') }
+            def options = layout.buildDirectory.file('gametest/options.txt').get().asFile
+            def lines = options.exists() ? options.readLines('UTF-8').findAll { !it.startsWith('resourcePacks:') } : []
+            lines.add('resourcePacks:["vanilla","file/paletale-native-qa"]')
+            options.text = lines.join('\n') + '\n'
+        }
+    }
+}
+
+if (compat) apply from: 'scripts/compat-1.21.8.gradle'
+
+if (project.hasProperty('officialCrops')) {
+    loom.runs.clientGameTest.vmArg('-Dpaletale.test.officialCrops=true')
+    tasks.named('runClientGameTest') {
+        doFirst {
+            def fixture = layout.buildDirectory.dir('official-crop-qa/paletale-official-crop-qa').get().asFile
+            if (!new File(fixture, 'pack.mcmeta').isFile()) throw new GradleException('Local-only QA fixture missing (not part of the public repo)')
+            copy { from fixture; into layout.buildDirectory.dir('gametest/resourcepacks/paletale-official-crop-qa') }
+            def options = layout.buildDirectory.file('gametest/options.txt').get().asFile
+            def lines = options.exists() ? options.readLines('UTF-8').findAll { !it.startsWith('resourcePacks:') } : []
+            lines.add('resourcePacks:["vanilla","file/paletale-official-crop-qa"]')
+            options.text = lines.join('\n') + '\n'
+            def old = layout.buildDirectory.dir('gametest/config/paletale').get().asFile
+            new File(old, 'backups').mkdirs()
+            new File(old, 'ledger.json').text = groovy.json.JsonOutput.toJson([entries: [[id: 'migration-fixture', time: System.currentTimeMillis(), kind: 'TRANSFER_IN', currency: '云币', amount: 7, quantity: 0]], separateAccounts: true, retentionDays: 90])
+            new File(old, 'backups/ledger-2026-10-20.json').text = '{"entries":[]}'
+            new File(old.parentFile, 'paletale.properties').text = 'site=main\ndailySummary=false\nautoFavorite=false\n'
+        }
+    }
+}
+
+if (project.hasProperty('chatOnly')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.chatOnly=true') }
+// Optional local compatibility test: the player's existing Chat Heads jar is never bundled.
+if (project.hasProperty('chatHeadsJar')) {
+    dependencies { modLocalRuntime files(project.property('chatHeadsJar')) }
+}
+
+if (project.hasProperty('chatLive')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.chatLive=true') }
+
+if (project.hasProperty('homeOnly')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.homeOnly=true') }
+
+if (project.hasProperty('landOnly')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.landOnly=true') }
+
+if (project.hasProperty('worldSearchOnly')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.worldSearchOnly=true') }
+
+if (project.hasProperty('countryOnly')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.countryOnly=true') }
+
+if (project.hasProperty('beta4')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.beta4=true') }
+
+if (project.hasProperty('feature102')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.feature102=true') }
+
+if (project.hasProperty('favoriteUiOnly')) { loom.runs.clientGameTest.vmArg('-Dpaletale.test.favoriteUiOnly=true') }
+
+// Optional compatibility test only; never bundles or changes the player's HUD optimizer.
+if (project.hasProperty('gnetumJar')) { dependencies { modLocalRuntime files(project.property('gnetumJar')) } }
+
+if (project.hasProperty("marketCardsOnly")) { loom.runs.clientGameTest.vmArg("-Dpaletale.test.marketCardsOnly=true") }
+
+if (project.hasProperty("privateChatOnly")) { loom.runs.clientGameTest.vmArg("-Dpaletale.test.privateChatOnly=true") }
+
+if (project.hasProperty("favoritePresenceOnly")) { loom.runs.clientGameTest.vmArg("-Dpaletale.test.favoritePresenceOnly=true") }
+
+if (project.hasProperty("mentionOnly")) { loom.runs.clientGameTest.vmArg("-Dpaletale.test.mentionOnly=true") }

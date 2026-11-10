@@ -1,0 +1,23 @@
+{
+  "kind": "monsoon-rules",
+  "version": 1,
+  "calendar": {
+    "daysPerMonth": 30,
+    "monthsPerYear": 12,
+    "minutesPerDay": 20
+  },
+  "events": [
+    { "month": 1, "day": 10, "ports": ["神蛙", "雪樱"], "durationMinutes": 60 },
+    { "month": 2, "day": 11, "ports": ["露露西亚"], "durationMinutes": 60 },
+    { "month": 3, "day": 20, "ports": ["烧鸡"], "durationMinutes": 0 },
+    { "month": 4, "day": 22, "ports": ["夏乡", "阿瓦罗萨", "雾月港"], "durationMinutes": 0 },
+    { "month": 5, "day": 9, "ports": ["千帆", "黄昏"], "durationMinutes": 0 },
+    { "month": 6, "day": 25, "ports": ["霞樱", "焰煌"], "durationMinutes": 0 },
+    { "month": 7, "day": 16, "ports": ["烧鸡", "雾月港"], "durationMinutes": 40 },
+    { "month": 8, "day": 12, "ports": ["清粥"], "durationMinutes": 0 },
+    { "month": 9, "day": 14, "ports": ["夏乡", "阿瓦罗萨", "雾月港"], "durationMinutes": 0 },
+    { "month": 10, "day": 16, "ports": ["露露西亚"], "durationMinutes": 0 },
+    { "month": 11, "day": 22, "ports": ["魔力果实酒馆"], "durationMinutes": 60 },
+    { "month": 12, "day": 23, "ports": ["辉梦"], "durationMinutes": 60 }
+  ]
+}

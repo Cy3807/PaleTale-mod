@@ -1,0 +1,7 @@
+{
+ "comment": "Throwaway test key made by scripts/mod-sign.mjs signJar(); its private key was discarded. Never a release key.",
+ "publicKey": "MCowBQYDK2VwAyEACvS7cfXoD/wwnT4i8uVrUgLkM1WZItUZJDqbDC4xpu4=",
+ "file": "Paletale-9.9.9-1.21.11.jar",
+ "sha256": "5b82e4deda6a1688473935f5a4deeac5813be5d25f8d4d9588c09d3c9687d603",
+ "signature": "u595h0YQDMJHbtZuJu5qvsO0VntPM4bPkzrKWjHsmpCJOBiA0vkO2w1cH9YDOlniJM1lvNEr1iuLIkPPaW4UDw=="
+}

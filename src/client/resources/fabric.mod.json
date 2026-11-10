@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "paletale",
+  "version": "${version}",
+  "name": "PaleTale",
+  "description": "PaleTale 配套模组：在游戏中查询物品、玩家、组织、广场与 SMC 世界的商店和价格，绑定箱子商店，导航并接收收藏更新通知。",
+  "icon": "assets/paletale/icon.png",
+  "authors": [
+    "Cy3807"
+  ],
+  "contact": {
+    "homepage": "https://www.paletale.cn",
+    "issues": "https://qm.qq.com/q/3ll80iLCzK"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "accessWidener": "paletale.accesswidener",
+  "entrypoints": {
+    "client": [
+      "cn.paletale.companion.PaleTaleClient"
+    ],
+    "modmenu": [
+      "cn.paletale.companion.PaleTaleModMenu"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "${minecraft}",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "breaks": {
+    "paletale_companion": "*"
+  },
+  "suggests": {
+    "cloth-config": "*",
+    "modmenu": "*"
+  },
+  "mixins": [
+    "paletale.client.mixins.json"
+  ]
+}

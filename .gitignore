@@ -1,0 +1,10 @@
+.gradle/
+build/
+run/
+.idea/
+*.iml
+logs/
+*.log
+*.log.gz
+.DS_Store
+.paletale-export

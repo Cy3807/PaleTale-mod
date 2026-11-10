@@ -1,0 +1,15 @@
+accessWidener v2 named
+# The ledger reads boss-bar titles (the server shows tips there) without a mixin.
+accessible field net/minecraft/client/gui/components/BossHealthOverlay events Ljava/util/Map;
+# The navigation marker uses the game's real field of view (sprinting and effects change it).
+accessible method net/minecraft/client/renderer/GameRenderer getFov (Lnet/minecraft/client/Camera;FZ)F
+
+# Observe only explicitly labelled, recently received primary population text.
+accessible field net/minecraft/client/gui/components/PlayerTabOverlay header Lnet/minecraft/network/chat/Component;
+accessible field net/minecraft/client/gui/components/PlayerTabOverlay footer Lnet/minecraft/network/chat/Component;
+
+# Chat commands are prefilled through the vanilla input API (protected on 1.21.8).
+accessible method net/minecraft/client/gui/screens/ChatScreen insertText (Ljava/lang/String;Z)V
+
+# The fish lookup reads the inventory slot under the mouse.
+accessible field net/minecraft/client/gui/screens/inventory/AbstractContainerScreen hoveredSlot Lnet/minecraft/world/inventory/Slot;
